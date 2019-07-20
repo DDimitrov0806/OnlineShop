@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model Shop.ViewModels.AllProductsViewModel
+
+<h2>Index</h2>
+<div class="container">
+    <div class="row justify-content-between">
+
+        @foreach (var product in Model.Products)
+        {
+        <div class="col-md-4">
+            <p class="lead">@product.Name</p>
+            <p class="lead">@product.Description</p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p class="lead"><a asp-route-id="@product.Id" asp-area="" asp-action="AddToCart" asp-controller="Cart" class="btn btn-primary btn-lg" role="button">Add</a> </p>
+
+            }
+            <p class="lead">Price: @product.Price</p>
+        </div>
+
+        }
+    </div>
+
+</div>
